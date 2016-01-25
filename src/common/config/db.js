@@ -4,21 +4,23 @@
  * @type {Object}
  */
 export default {
-  type: 'mysql',
+  type: 'mongo',
+  host: '127.0.0.1',
+  port: '',
+  name: 'monitor',
+  user: '',
+  pwd: '',
+  prefix: 'think_',
+  encoding: 'utf8',
+  nums_per_page: 10,
   log_sql: true,
   log_connect: true,
-  adapter: {
-    mysql: {
-      host: '127.0.0.1',
-      port: '',
-      database: '',
-      user: '',
-      password: '',
-      prefix: 'think_',
-      encoding: 'utf8'
-    },
-    mongo: {
-
-    }
+  cache: {
+    on: true,
+    type: '',
+    timeout: 3600
+  },
+  options: {
+    authSource: 'admin'
   }
 };
