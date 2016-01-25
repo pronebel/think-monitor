@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MIDIS Admin</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="static/img/logo.png" type="image/x-icon">
+
+    <!-- STYLES -->
+    <!-- build:css dist/main.min.css -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../node_modules/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="../bower_components/rdash-ui/dist/css/rdash.min.css">
+    <!-- endbuild -->
+
+    <!-- SCRIPTS -->
+    <!-- build:js dist/main.min.js -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/vue-strap/dist/vue-strap.min.js"></script>
+    <script src="../node_modules/underscore/underscore-min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <!--<script src="../external/highcharts.js"></script>-->
+    <!-- endbuild -->
+  </head>
+  <body>
+    <div id="page-wrapper" v-class="open: toggle" v-cloak>
+      <app-sidebar sidebar="{{sidebar}}" toggle="{{@ toggle}}" modules="{{modules}}"></app-sidebar>
+      <div id="content-wrapper">
+        <div class="page-content">
+          <!-- Header Bar -->
+          <app-header header="{{header}}" product-cfg="{{productCfg}}">
+          </app-header>
+          <!-- Main Content -->
+          <router-view product-cfg="{{productCfg}}">
+          </router-view>
+        </div>
+      </div>      
+    </div>
+    <script src="dist/build.js"></script>
+  </body>
+</html>
