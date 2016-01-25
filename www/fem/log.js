@@ -155,7 +155,9 @@
 
     window.fem = {
 
-        rtc:rtcLog
+        rtc:rtcLog,
+        js:M.JsError
+
     }
 
 
@@ -171,11 +173,11 @@
         });
         return true;
     }
-    /*if(window.DEBUG!=true){
-     window.onerror = function () {
-     JS_ERROR_REPORTER(Array.prototype.slice.call(arguments));
-     }
-     }*/
+
+    window.onerror = function () {
+        JS_ERROR_REPORTER(Array.prototype.slice.call(arguments));
+    }
+
 
 
 })(window);
