@@ -42,6 +42,13 @@ gulp.task('webpack', function() {
     .pipe(gulp.dest('www/static/dist/'));
 });
 
+gulp.task('fem', function() {
+  return gulp.src('fem/index.js')
+      .pipe(webpack(require('./fem.config.js')))
+      .pipe(rename('monitor.js'))
+      .pipe(gulp.dest('www/static/fem'));
+});
+
 /**
  * Copy assets
  */
