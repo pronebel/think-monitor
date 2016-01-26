@@ -32,14 +32,14 @@ gulp.task('usemin', function() {
         keepSpecialComments: 0
       }), 'concat'],
     }))
-    .pipe(gulp.dest('www/static/'));
+    .pipe(gulp.dest('www/static/monitor'));
 });
 
 gulp.task('webpack', function() {
   return gulp.src(paths.entry)
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(rename('build.js'))
-    .pipe(gulp.dest('www/static/dist/'));
+    .pipe(gulp.dest('www/static/monitor/dist'));
 });
 
 gulp.task('fem', function() {
@@ -59,7 +59,7 @@ gulp.task('copy-fonts', function() {
     .pipe(rename({
       dirname: '/fonts'
     }))
-    .pipe(gulp.dest('www/static/'));
+    .pipe(gulp.dest('www/static/monitor'));
 });
 
 /**
@@ -69,7 +69,7 @@ gulp.task('build-custom', ['copy-static']);
 
 gulp.task('copy-static', function() {
   return gulp.src(paths.staticRes)
-    .pipe(gulp.dest('www/static/assets'));
+    .pipe(gulp.dest('www/static/monitor/assets'));
 });
 
 /**
