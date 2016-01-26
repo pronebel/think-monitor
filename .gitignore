@@ -1,4 +1,4 @@
-/www/static
+/www/static/monitor
 # Logs
 logs
 *.log
