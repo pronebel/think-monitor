@@ -1,4 +1,5 @@
 /www/static/fem
+/bower_components
 /www/static/monitor
 # Logs
 logs
