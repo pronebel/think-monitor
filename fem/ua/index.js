@@ -832,4 +832,4 @@
     };
 
 
-    exports.UAParser = UAParser;
+    module.exports= UAParser;

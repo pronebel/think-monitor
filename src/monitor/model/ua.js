@@ -18,8 +18,11 @@ export default class extends think.model.mongo {
         super.init(...args);
 
     }
-    collect(ua){
+    collect(card){
 
-        return this.add(ua)
+        console.log(card);
+
+
+        return this.add(card)
     }
 }
