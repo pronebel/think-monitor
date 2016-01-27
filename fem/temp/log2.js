@@ -14,56 +14,7 @@
     // --------------------------------------------------------------------------------------------
 
 
-    window.onerror = function(msg, url, lineNum) {
-        var stackTraceInfo = printStackTrace();
-        var errorInfo = {
-            url:        url,
-            lineNum:    lineNum,
-            stackTrace: stackTraceInfo.stackTrace,
-            browser:    stackTraceInfo.browser
-        };
-        logError(logErrorURL, confirmResponse, errorInfo);
-        return false;
-    };
 
-    function confirmResponse(response) {
-        if (debugMode) {
-            console.log("response from server: ", response);
-        }
-    }
-
-    // Modded from quirksmode: http://www.quirksmode.org/js/xmlhttp.html.
-    // this handles the cross-browser XMLHttpRequest.
-    function logError(url, callback, postData) {
-        var req = createXMLHTTPObject();
-        if (!req) {
-            return;
-        }
-        req.open("POST", url, true);
-        req.setRequestHeader('User-Agent', 'XMLHTTP/1.0');
-        if (postData) {
-            req.setRequestHeader('Content-type', 'application/json');
-        }
-        req.onreadystatechange = function() {
-            if (req.readyState != 4) {
-                return;
-            }
-            if (req.status != 200 && req.status != 304) {
-                return;
-            }
-            callback(req);
-        };
-        if (req.readyState == 4) {
-            return;
-        }
-
-        var postDataPairs = [];
-        for (var i in postData) {
-            postDataPairs.push(i + "=" + encodeURIComponent(postData[i]));
-        }
-        var postDataPairsStr = postDataPairs.join("&");
-        req.send(postDataPairsStr);
-    }
 
 
 
@@ -390,52 +341,8 @@
 
         sourceCache: {},
 
-        /**
-         * @return the text from a given URL
-         */
-        ajax: function(url) {
-            var req = this.createXMLHTTPObject();
-            if (req) {
-                try {
-                    req.open('GET', url, false);
-                    //req.overrideMimeType('text/plain');
-                    //req.overrideMimeType('text/javascript');
-                    req.send(null);
-                    //return req.status == 200 ? req.responseText : '';
-                    return req.responseText;
-                } catch (e) {
-                }
-            }
-            return '';
-        },
 
-        /**
-         * Try XHR methods in order and store XHR factory.
-         *
-         * @return <Function> XHR function or equivalent
-         */
-        createXMLHTTPObject: function() {
-            var xmlhttp, XMLHttpFactories = [
-                function() {
-                    return new XMLHttpRequest();
-                }, function() {
-                    return new ActiveXObject('Msxml2.XMLHTTP');
-                }, function() {
-                    return new ActiveXObject('Msxml3.XMLHTTP');
-                }, function() {
-                    return new ActiveXObject('Microsoft.XMLHTTP');
-                }
-            ];
-            for (var i = 0; i < XMLHttpFactories.length; i++) {
-                try {
-                    xmlhttp = XMLHttpFactories[i]();
-                    // Use memoization to cache the factory
-                    this.createXMLHTTPObject = XMLHttpFactories[i];
-                    return xmlhttp;
-                } catch (e) {
-                }
-            }
-        },
+
 
         /**
          * Given a URL, check if it is in the same domain (so we can get the source
